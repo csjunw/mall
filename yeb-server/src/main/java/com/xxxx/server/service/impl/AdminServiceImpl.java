@@ -67,7 +67,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         //登录
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         if(null == userDetails || !passwordEncoder.matches(password,userDetails.getPassword())){
-            return RespBean.error("用户名不正确");
+            return RespBean.error("用户名或者密码不正确");
         }
         if(!userDetails.isEnabled()){
             return RespBean.error("账号被禁用，请联系管理员");
