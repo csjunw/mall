@@ -4,6 +4,7 @@ import ch.qos.logback.classic.turbo.TurboFilter;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -18,5 +19,8 @@ public class AdminLoginParam {
 
     @ApiModelProperty(value = "密码", required = true)
     private String password;
+
+    @ApiModelProperty(value = "验证码", required = true)
+    private String captcha;
 
 }

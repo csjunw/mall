@@ -1,28 +1,25 @@
 package com.xxxx.server.service.impl;
 
+import ch.qos.logback.core.pattern.util.RegularEscapeUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.xxxx.server.config.security.JwtTokenUtil;
 import com.xxxx.server.mapper.AdminMapper;
 import com.xxxx.server.pojo.Admin;
-import com.xxxx.server.pojo.AdminLoginParam;
 import com.xxxx.server.pojo.RespBean;
 import com.xxxx.server.service.IAdminService;
+import org.apache.poi.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.origin.OriginTrackedValue;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.security.Security;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,11 +56,18 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
      * 登录之后返回token
      * @param username
      * @param password
+     * @param captcha
      * @param request
      * @return
      */
     @Override
-    public RespBean login(String username, String password, HttpServletRequest request) {
+    public RespBean login(String username, String password, String captcha, HttpServletRequest request) {
+
+        String captchaTrue = (String) request.getSession().getAttribute("captcha");
+        if(StringUtils.isEmpty(captcha) || !captchaTrue.equalsIgnoreCase(captcha)){
+            return RespBean.error("验证码错误,请重新输入");
+        }
+
         //登录
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         if(null == userDetails || !passwordEncoder.matches(password,userDetails.getPassword())){
