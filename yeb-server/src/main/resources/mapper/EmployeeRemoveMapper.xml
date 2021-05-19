@@ -3,7 +3,7 @@
 <mapper namespace="com.xxxx.server.mapper.EmployeeRemoveMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.xxxx.pojo.EmployeeRemove">
+    <resultMap id="BaseResultMap" type="com.xxxx.server.pojo.EmployeeRemove">
         <id column="id" property="id" />
         <result column="eid" property="eid" />
         <result column="after_dep_id" property="afterDepId" />

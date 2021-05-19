@@ -3,7 +3,7 @@
 <mapper namespace="com.xxxx.server.mapper.AppraiseMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.xxxx.pojo.Appraise">
+    <resultMap id="BaseResultMap" type="com.xxxx.server.pojo.Appraise">
         <id column="id" property="id" />
         <result column="eid" property="eid" />
         <result column="app_date" property="appDate" />

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author junw
  * @since 2021-05-18
  */
-@Repository
+
 public interface AdminMapper extends BaseMapper<Admin> {
 
 }
