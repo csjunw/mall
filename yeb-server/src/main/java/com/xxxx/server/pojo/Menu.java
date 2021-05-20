@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -55,10 +56,15 @@ public class Menu implements Serializable {
     @ApiModelProperty(value = "是否启用")
     private String enabled;
 
-    //在表中没有这个字段
+    //在表中没有这个字段，用于返回用户能看见的菜单
     @TableField(exist = false)
     @ApiModelProperty(value = "子菜单")
     private List<Menu> children;
+
+    //在表中没有这个字段
+    @ApiModelProperty(value = "角色列表")
+    @TableField(exist = false)
+    private List<Role> roles;
 
 
 }

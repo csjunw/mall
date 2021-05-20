@@ -32,6 +32,13 @@
 
         </collection>
     </resultMap>
+    <resultMap id="MenusWithRole" type="com.xxxx.server.pojo.Menu" extends="BaseResultMap">
+        <collection property="roles" ofType="com.xxxx.server.pojo.Role">
+            <id column="rid" property="id"/>
+            <result column="rname" property="name"/>
+            <result column="rnameZh" property="nameZh"/>
+        </collection>
+    </resultMap>
 
 
     <!-- 通用查询结果列 -->
@@ -46,8 +53,19 @@ from t_menu m1,t_menu m2,t_admin_role ar, t_menu_role mr
 where m1.id = m2.parentId
 and m2.id = mr.mid
 and mr.rid =ar.rid
-and ar.adminId =#{id}
+and ar.adminId =1
 and m2.enabled =TRUE
+order by m1.id
+    </select>
+<!--    根据角色获取菜单列表-->
+    <select id="getMenusWithRole" resultMap="MenusWithRole">
+    select
+m.*,r.id = rid,r.name as rname, r.nameZh as rnameZh
+from t_menu m, t_menu_role mr, t_role r
+where m.id = mr.mid
+and   r.id = mr.rid
+order by m.id
+
     </select>
 
 </mapper>
