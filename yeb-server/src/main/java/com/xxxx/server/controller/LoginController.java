@@ -30,7 +30,7 @@ public class LoginController {
     //登录，如果登录成功，则返回token。前端保存token，之后每次请求都携带token。
     @ApiOperation(value = "登录之后返回token")
     @PostMapping("/login")
-    public RespBean login(@RequestBody AdminLoginParam adminLoginParam, HttpServletRequest request){
+    public RespBean login(AdminLoginParam adminLoginParam, HttpServletRequest request){
         return adminService.login(adminLoginParam.getUsername(),adminLoginParam.getPassword(),adminLoginParam.getCaptcha(),request);
     }
 
