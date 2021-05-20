@@ -33,7 +33,6 @@ public class AdminRole implements Serializable {
     private Integer id;
 
     @ApiModelProperty(value = "用户id")
-    @TableField("admin_id")
     private Integer adminId;
 
     @ApiModelProperty(value = "权限id")

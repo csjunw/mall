@@ -37,7 +37,6 @@ public class SysMsgContent implements Serializable {
     private String message;
 
     @ApiModelProperty(value = "创建时间")
-    @TableField("create_date")
     private LocalDateTime createDate;
 
 

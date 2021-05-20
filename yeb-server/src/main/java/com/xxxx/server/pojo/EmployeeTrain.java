@@ -34,11 +34,9 @@ public class EmployeeTrain implements Serializable {
     private Integer eid;
 
     @ApiModelProperty(value = "培训日期")
-    @TableField("train_date")
     private LocalDateTime trainDate;
 
     @ApiModelProperty(value = "培训内容")
-    @TableField("train_content")
     private String trainContent;
 
     @ApiModelProperty(value = "备注")

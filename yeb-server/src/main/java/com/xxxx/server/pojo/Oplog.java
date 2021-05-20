@@ -31,7 +31,6 @@ public class Oplog implements Serializable {
     private Integer id;
 
     @ApiModelProperty(value = "添加日期")
-    @TableField("add_date")
     private LocalDateTime addDate;
 
     @ApiModelProperty(value = "操作内容")

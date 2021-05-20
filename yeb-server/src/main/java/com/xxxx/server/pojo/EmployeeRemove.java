@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("t_employee_remove")
-@ApiModel(value="EmployeeRemove对象", description="")
+@ApiModel(value = "EmployeeRemove对象", description = "")
 public class EmployeeRemove implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,15 +34,15 @@ public class EmployeeRemove implements Serializable {
     private Integer eid;
 
     @ApiModelProperty(value = "调动后部门")
-    @TableField("after_dep_id")
+
     private Integer afterDepId;
 
     @ApiModelProperty(value = "调动后职位")
-    @TableField("after_job_id")
+
     private Integer afterJobId;
 
     @ApiModelProperty(value = "调动日期")
-    @TableField("remove_date")
+
     private LocalDateTime removeDate;
 
     @ApiModelProperty(value = "调动原因")

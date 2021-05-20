@@ -33,7 +33,6 @@ public class Role implements Serializable {
     private String name;
 
     @ApiModelProperty(value = "角色名称")
-    @TableField("name_zh")
     private String nameZh;
 
 

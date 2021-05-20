@@ -37,11 +37,9 @@ public class Joblevel implements Serializable {
     private String name;
 
     @ApiModelProperty(value = "职称等级")
-    @TableField("title_level")
     private String titleLevel;
 
     @ApiModelProperty(value = "创建时间")
-    @TableField("create_date")
     private LocalDateTime createDate;
 
     @ApiModelProperty(value = "是否启用")

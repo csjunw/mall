@@ -36,18 +36,15 @@ public class Department implements Serializable {
     private String name;
 
     @ApiModelProperty(value = "父id")
-    @TableField("parent_id")
     private Integer parentId;
 
     @ApiModelProperty(value = "路径")
-    @TableField("dep_path")
     private String depPath;
 
     @ApiModelProperty(value = "是否启用")
     private String enabled;
 
     @ApiModelProperty(value = "是否上级")
-    @TableField("is_parent")
     private String isParent;
 
 
