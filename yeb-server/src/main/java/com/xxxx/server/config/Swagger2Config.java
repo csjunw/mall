@@ -75,8 +75,8 @@ public class Swagger2Config {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .version("1.0")
-                .title("云E办接口文档")
-                .description("云E办接口文档")
+                .title("人事管理")
+                .description("人事管理")
                 .contact(new Contact("xxxx", "http://localhost:8081", "xxx@xxx.com"))
                 .build();
 

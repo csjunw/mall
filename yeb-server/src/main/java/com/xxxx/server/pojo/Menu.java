@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -56,6 +57,11 @@ public class Menu implements Serializable {
 
     @ApiModelProperty(value = "是否启用")
     private String enabled;
+
+    //在表中没有这个字段
+    @TableField(exist = false)
+    @ApiModelProperty(value = "子菜单")
+    private List<Menu> children;
 
 
 }
