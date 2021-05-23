@@ -9,10 +9,12 @@ import com.xxxx.server.service.IMenuRoleService;
 import com.xxxx.server.service.IMenuService;
 import com.xxxx.server.service.IRoleService;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.InetAddress;
 import java.util.List;
 import java.util.Queue;
 import java.util.stream.Collectors;
@@ -40,7 +42,7 @@ public class PermissionController {
     }
 
     @ApiOperation("add role")
-    @PostMapping("/")
+    @PostMapping("/role")
     public RespBean addRole(Role role){
         if(!role.getName().startsWith("ROLE_")){
             role.setName("ROLE_"+role.getName());
@@ -69,6 +71,12 @@ public class PermissionController {
     @GetMapping("/mid/{rid}")
     public List<Integer> getMidByRid(Integer rid){
         return menuRoleService.list(new QueryWrapper<MenuRole>().eq("rid",rid)).stream().map(MenuRole::getMid).collect(Collectors.toList());
+    }
+
+    @ApiOperation(value = "updae role menus")
+    @PutMapping("/")
+    public RespBean updateMenuRole(Integer rid, Integer[] mids){
+        return menuRoleService.updateMenuRole(rid,mids);
     }
 
 }
