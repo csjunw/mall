@@ -1,13 +1,21 @@
 package com.xxxx.server.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.xxxx.server.pojo.Menu;
+import com.xxxx.server.pojo.MenuRole;
 import com.xxxx.server.pojo.RespBean;
 import com.xxxx.server.pojo.Role;
+import com.xxxx.server.service.IMenuRoleService;
+import com.xxxx.server.service.IMenuService;
 import com.xxxx.server.service.IRoleService;
 import io.swagger.annotations.ApiOperation;
+import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Queue;
+import java.util.stream.Collectors;
 
 /**
  * 权限组
@@ -20,6 +28,10 @@ public class PermissionController {
 
     @Autowired
     private IRoleService roleService;
+    @Autowired
+    private IMenuService menuService;
+    @Autowired
+    private IMenuRoleService menuRoleService;
 
     @ApiOperation(value = "get all roles")
     @GetMapping("/")
@@ -47,4 +59,16 @@ public class PermissionController {
         }
         return RespBean.error("delete success");
     }
+    @ApiOperation(value = "query all menus")
+    @GetMapping("/menus")
+    public List<Menu> getAllMenus(){
+        return menuService.getAllMenus();
+    }
+
+    @ApiOperation(value = "query menu id by role id")
+    @GetMapping("/mid/{rid}")
+    public List<Integer> getMidByRid(Integer rid){
+        return menuRoleService.list(new QueryWrapper<MenuRole>().eq("rid",rid)).stream().map(MenuRole::getMid).collect(Collectors.toList());
+    }
+
 }
