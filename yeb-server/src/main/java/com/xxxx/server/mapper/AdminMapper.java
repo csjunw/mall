@@ -5,6 +5,8 @@ import com.xxxx.server.pojo.Admin;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -16,4 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 public interface AdminMapper extends BaseMapper<Admin> {
 
+    /**
+     * get all operator but current oprerator
+     * @param id
+     * @param keywords
+     * @return
+     */
+    List<Admin> getAllAdmins(Integer id, String keywords);
 }
