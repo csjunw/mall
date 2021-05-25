@@ -26,4 +26,10 @@ public interface DepartmentMapper extends BaseMapper<Department> {
      * @param dep
      */
     void addDep(Department dep);
+
+    /**
+     * delete a department
+     * @param dep
+     */
+    void deleteDep(Department dep);
 }

@@ -8,10 +8,7 @@ import com.xxxx.server.service.IDepartmentService;
 import com.xxxx.server.service.impl.DepartmentServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,11 +31,17 @@ public class DepartmentController {
     public List<Department> getAllDepartments() {
         return departmentService.getAllDepartments();
     }
+
     @ApiOperation(value = "add a department")
     @PostMapping("/")
     public RespBean addDep(Department dep){
         return departmentService.addDep(dep);
     }
 
+    @ApiOperation(value = "delete a department")
+    @DeleteMapping("/{id}")
+    public RespBean deleteDep(Integer id){
+        return departmentService.deleteDep(id);
+    }
 
 }

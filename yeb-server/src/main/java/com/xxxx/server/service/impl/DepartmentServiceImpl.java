@@ -8,6 +8,7 @@ import com.xxxx.server.service.IDepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.crypto.Data;
 import java.awt.image.RescaleOp;
 import java.util.List;
 
@@ -43,5 +44,28 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
         }
 
         return RespBean.error("add err");
+    }
+
+    /**
+     * delete a department
+     * @param id
+     * @return
+     */
+    @Override
+    public RespBean deleteDep(Integer id) {
+        Department dep  = new Department();
+        dep.setId(id);
+        departmentMapper.deleteDep(dep);
+        if(-2 == dep.getResult()){
+            return RespBean.error("delete error,this department has son ");
+        }
+        if(-1 == dep.getResult()){
+            return RespBean.error("delete error,this department has employements");
+        }
+        if(1 == dep.getResult()){
+            return RespBean.success("delete success");
+        }
+
+        return RespBean.error("delete error");
     }
 }
