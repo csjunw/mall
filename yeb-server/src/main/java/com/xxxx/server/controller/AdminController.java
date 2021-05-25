@@ -2,17 +2,17 @@ package com.xxxx.server.controller;
 
 
 import com.xxxx.server.pojo.Admin;
+import com.xxxx.server.pojo.RespBean;
 import com.xxxx.server.service.IAdminService;
 import com.xxxx.server.service.impl.AdminServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.PushBuilder;
 import javax.swing.plaf.PanelUI;
 import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * <p>
@@ -32,5 +32,23 @@ public class AdminController {
     public List<Admin> getAllAdmins(String keywords){
         return adminService.getAllAdmins(keywords);
     }
+    @ApiOperation(value = "update a operator info")
+    @PutMapping("/")
+    public RespBean updateAdmin(Admin admin){
+        if(adminService.updateById(admin)){
+            return RespBean.success("update success");
+        }
+        return RespBean.error("update erorr");
+    }
+
+    @ApiOperation(value = "delete a operator")
+    @DeleteMapping("/")
+    public RespBean deleteAdmin(Integer id){
+        if(adminService.removeById(id)){
+            return RespBean.success("delete success");
+        }
+        return RespBean.error("delete error");
+    }
+
 
 }
