@@ -21,8 +21,13 @@
     <sql id="Base_Column_List">
         id, name, parentId, depPath, enabled, isParent
     </sql>
+<!--    add department-->
+    <insert id="addDep" statementType="CALLABLE">
+        call addDep(#{name,mode=IN,jdbcType=VARCHAR},#{parentId,mode=IN,jdbcType=INTEGER},#{enabled,mode=IN,
+        jdbcType=BOOLEAN},#{result,mode=OUT,jdbcType=INTEGER},#{id,mode=OUT,jdbcType=INTEGER})
+    </insert>
 
-<!--    get all departments-->
+    <!--    get all departments-->
     <select id="getAllDepartments" resultMap="DepartmentWithChildren">
         select
         <include refid="Base_Column_List"/>
