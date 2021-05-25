@@ -3,8 +3,11 @@ package com.xxxx.server.controller;
 
 import com.xxxx.server.pojo.Admin;
 import com.xxxx.server.pojo.RespBean;
+import com.xxxx.server.pojo.Role;
 import com.xxxx.server.service.IAdminService;
+import com.xxxx.server.service.IRoleService;
 import com.xxxx.server.service.impl.AdminServiceImpl;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +30,8 @@ import java.util.ResourceBundle;
 public class AdminController {
     @Autowired
     private IAdminService adminService;
+    @Autowired
+    private IRoleService roleService;
     @ApiOperation(value = "get all operator")
     @GetMapping("/")
     public List<Admin> getAllAdmins(String keywords){
@@ -49,6 +54,18 @@ public class AdminController {
         }
         return RespBean.error("delete error");
     }
+    @ApiOperation(value = "get all roles")
+    @GetMapping("/roles")
+    public List<Role> getAllRoles(){
+        return roleService.list();
+    }
+    @ApiOperation(value = "update operator has roles")
+    @PutMapping("/role")
+    public RespBean updateAdminRole(Integer adminId,Integer[] rids){
+
+        return adminService.updateAdminRole(adminId,rids);
+    }
+
 
 
 }
